@@ -9,13 +9,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Create and activate virtual environment
+      - name: Install Python deps
         run: |
             python3 -m venv venv
             source venv/bin/activate
-
-      - name: Install Python deps
-        run: |
             python3 -m pip install pyinstaller termcolor
 
       - name: Build app
