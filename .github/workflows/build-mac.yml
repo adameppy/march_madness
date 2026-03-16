@@ -1,0 +1,24 @@
+name: Build Mac App
+
+on: [workflow_dispatch]
+
+jobs:
+  build-mac:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Python deps
+        run: |
+          pip3 install pyinstaller termcolor
+
+      - name: Build app
+        run: |
+          pyinstaller --onefile --windowed teampicker2026.py
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: march_madness_mac
+          path: dist/
